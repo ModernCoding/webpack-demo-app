@@ -9,5 +9,14 @@ module.exports = {
   },
 
   mode: "development",
-  devtool: "none"
+  devtool: "none",
+  
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 }

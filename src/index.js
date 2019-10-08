@@ -1,4 +1,4 @@
-import "./main.css";
+import "./main.sass";
 
 import { run } from './app/app';
 import { AlertService } from './app/alert.service';

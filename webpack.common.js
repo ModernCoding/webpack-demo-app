@@ -11,17 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.sass$/i,
-
-        use: [
-          'style-loader', //  3.  inject styles into dom
-          'css-loader',   //  2.  turns css into cjs
-          'sass-loader'   //  1.  turns sass into css
-        ],
-      },
-      {
         test: /\.html$/i,
-
         use: ['html-loader'],
       },
       {

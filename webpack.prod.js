@@ -1,7 +1,13 @@
 const path = require("path");
 const common = require("./webpack.common.js");
 const merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+const OptimizeCssAssetsPlugin = require(
+  'optimize-css-assets-webpack-plugin'
+);
 
 module.exports = merge(
   common,
@@ -15,6 +21,16 @@ module.exports = merge(
     mode: "production",
 
     plugins: [
+      new HtmlWebpackPlugin({
+        template: "./src/template.html",
+
+        minify: {
+          removeAttributeQuotes: true,
+          collapseWhitespace: true,
+          removeComments: true
+        }
+      }),
+
       new MiniCssExtractPlugin({
         filename: '[name].[contentHash].css'
       })
@@ -32,6 +48,13 @@ module.exports = merge(
           ],
         }
       ],
+    },
+
+    optimization: {
+      minimizer: [
+        new OptimizeCssAssetsPlugin(),
+        new TerserPlugin()
+      ]
     }
   }
 );
